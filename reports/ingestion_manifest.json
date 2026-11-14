@@ -1,0 +1,41 @@
+{
+  "ingested_at_utc": "2026-11-14T10:39:28+00:00",
+  "source": "synthetic (src/ingestion/generate_synthetic.py)",
+  "files": {
+    "users": {
+      "rows": 1521,
+      "columns": [
+        "user_id",
+        "age",
+        "gender",
+        "country",
+        "signup_date"
+      ],
+      "md5": "312cf7b2feaaaef3d7caf3f155c397e9",
+      "bytes": 44343
+    },
+    "items": {
+      "rows": 606,
+      "columns": [
+        "item_id",
+        "title",
+        "category",
+        "genres",
+        "release_year"
+      ],
+      "md5": "bfd647bbd75a66d994ac00b3fc99903b",
+      "bytes": 30602
+    },
+    "interactions": {
+      "rows": 40020,
+      "columns": [
+        "user_id",
+        "item_id",
+        "rating",
+        "timestamp"
+      ],
+      "md5": "75f232a7800b0534d255facc3377ba96",
+      "bytes": 1397148
+    }
+  }
+}

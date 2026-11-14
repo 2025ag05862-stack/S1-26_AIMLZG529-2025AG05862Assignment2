@@ -1,0 +1,24 @@
+table,rule,column,severity,description,rows_checked,rows_failed,pct_failed
+users,U01_user_id_not_null,user_id,error,user_id must be present,1521,3,0.197
+users,U02_user_id_unique,user_id,error,duplicate user_id (first occurrence kept),1521,21,1.381
+users,U03_age_missing,age,warning,age missing (imputed later),1521,30,1.972
+users,U04_age_valid,age,warning,"age must be numeric in [10, 100]",1521,15,0.986
+users,U05_country_missing,country,warning,country missing (filled later),1521,22,1.446
+users,U06_gender_standard,gender,warning,"gender not in ['M', 'F', 'Other'] (standardised later)",1521,232,15.253
+users,U07_signup_date_parseable,signup_date,warning,signup_date must be a valid date,1521,8,0.526
+items,I01_item_id_not_null,item_id,error,item_id must be present,606,0,0.0
+items,I02_item_id_unique,item_id,error,duplicate item_id (first occurrence kept),606,6,0.99
+items,I03_title_missing,title,warning,title missing,606,6,0.99
+items,I04_category_missing,category,warning,category missing (set to 'unknown'),606,12,1.98
+items,I05_release_year_valid,release_year,warning,"release_year must be numeric in [1900, 2024]",606,6,0.99
+interactions,X01_user_id_not_null,user_id,error,user_id must be present,40020,79,0.197
+interactions,X01_item_id_not_null,item_id,error,item_id must be present,40020,0,0.0
+interactions,X01_rating_not_null,rating,error,rating must be present,40020,197,0.492
+interactions,X01_timestamp_not_null,timestamp,error,timestamp must be present,40020,119,0.297
+interactions,X02_rating_numeric,rating,error,rating must be numeric (data type),40020,118,0.295
+interactions,X03_rating_range,rating,error,"rating must be in [1, 5]",40020,237,0.592
+interactions,X04_timestamp_parseable,timestamp,error,timestamp must be a valid datetime,40020,118,0.295
+interactions,X05_timestamp_in_range,timestamp,error,"timestamp must be within [2022-01-01, 2024-07-01] (no future / ancient dates)",40020,199,0.497
+interactions,X06_exact_duplicate,all,error,exact duplicate row (first occurrence kept),40020,394,0.985
+interactions,X07_user_referential_integrity,user_id,error,user_id not found in validated users table,40020,205,0.512
+interactions,X08_item_referential_integrity,item_id,error,item_id not found in validated items table,40020,158,0.395

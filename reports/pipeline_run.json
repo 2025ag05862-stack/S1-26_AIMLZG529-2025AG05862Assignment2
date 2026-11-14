@@ -1,0 +1,42 @@
+{
+  "started_utc": "2026-11-14T10:15:42+00:00",
+  "tasks": {
+    "ingest": {
+      "status": "success",
+      "seconds": 2.91,
+      "attempts": 1
+    },
+    "validate": {
+      "status": "success",
+      "seconds": 1.09,
+      "attempts": 1
+    },
+    "prepare": {
+      "status": "success",
+      "seconds": 0.66,
+      "attempts": 1
+    },
+    "transform": {
+      "status": "success",
+      "seconds": 0.61,
+      "attempts": 1
+    },
+    "build_features": {
+      "status": "success",
+      "seconds": 0.95,
+      "attempts": 1
+    },
+    "train": {
+      "status": "success",
+      "seconds": 29.6,
+      "attempts": 1
+    },
+    "evaluate": {
+      "status": "success",
+      "seconds": 1.76,
+      "attempts": 1
+    }
+  },
+  "finished_utc": "2026-11-14T10:16:19+00:00",
+  "success": true
+}

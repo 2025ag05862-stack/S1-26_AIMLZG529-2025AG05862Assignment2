@@ -1,0 +1,31 @@
+source_row,item_id,title,category,genres,release_year,rule,column,severity,detail
+98,I0012,Item Title 0012,sci-fi,sci-fi,2004,I02_item_id_unique,item_id,error,duplicate item_id (first occurrence kept)
+183,I0282,Item Title 0282,comedy,comedy|thriller,2015,I02_item_id_unique,item_id,error,duplicate item_id (first occurrence kept)
+190,I0361,Item Title 0361,documentary,documentary,1997,I02_item_id_unique,item_id,error,duplicate item_id (first occurrence kept)
+463,I0504,Item Title 0504,thriller,thriller|animation,1982,I02_item_id_unique,item_id,error,duplicate item_id (first occurrence kept)
+540,I0140,Item Title 0140,action,action|documentary|animation,1989,I02_item_id_unique,item_id,error,duplicate item_id (first occurrence kept)
+567,I0485,Item Title 0485,comedy,comedy,1993,I02_item_id_unique,item_id,error,duplicate item_id (first occurrence kept)
+17,I0281,,drama,drama,2020,I03_title_missing,title,warning,title missing
+26,I0321,,sci-fi,sci-fi|comedy,2016,I03_title_missing,title,warning,title missing
+164,I0501,,sci-fi,sci-fi|action|animation,2013,I03_title_missing,title,warning,title missing
+449,I0066,,action,action,1996,I03_title_missing,title,warning,title missing
+507,I0268,,drama,drama,2013,I03_title_missing,title,warning,title missing
+551,I0206,,drama,drama|comedy|romance,1996,I03_title_missing,title,warning,title missing
+1,I0290,Item Title 0290,,thriller,1988,I04_category_missing,category,warning,category missing (set to 'unknown')
+126,I0133,Item Title 0133,,animation,2013,I04_category_missing,category,warning,category missing (set to 'unknown')
+137,I0076,Item Title 0076,,animation,1989,I04_category_missing,category,warning,category missing (set to 'unknown')
+220,I0020,Item Title 0020,,drama|sci-fi,2001,I04_category_missing,category,warning,category missing (set to 'unknown')
+242,I0403,Item Title 0403,,romance|animation,2018,I04_category_missing,category,warning,category missing (set to 'unknown')
+312,I0194,Item Title 0194,,comedy|thriller|romance,2022,I04_category_missing,category,warning,category missing (set to 'unknown')
+315,I0341,Item Title 0341,,sci-fi|romance,1990,I04_category_missing,category,warning,category missing (set to 'unknown')
+328,I0350,Item Title 0350,,documentary|thriller|romance,1987,I04_category_missing,category,warning,category missing (set to 'unknown')
+347,I0267,Item Title 0267,,drama,1995,I04_category_missing,category,warning,category missing (set to 'unknown')
+361,I0349,Item Title 0349,,drama|sci-fi,1993,I04_category_missing,category,warning,category missing (set to 'unknown')
+452,I0243,Item Title 0243,,animation|comedy,2000,I04_category_missing,category,warning,category missing (set to 'unknown')
+536,I0296,Item Title 0296,,documentary,1999,I04_category_missing,category,warning,category missing (set to 'unknown')
+52,I0543,Item Title 0543,romance,romance|documentary,1500,I05_release_year_valid,release_year,warning,"release_year must be numeric in [1900, 2024]"
+70,I0278,Item Title 0278,action,action|drama|sci-fi,2090,I05_release_year_valid,release_year,warning,"release_year must be numeric in [1900, 2024]"
+170,I0365,Item Title 0365,action,action|sci-fi|romance,2090,I05_release_year_valid,release_year,warning,"release_year must be numeric in [1900, 2024]"
+214,I0115,Item Title 0115,documentary,documentary,unknown,I05_release_year_valid,release_year,warning,"release_year must be numeric in [1900, 2024]"
+299,I0506,Item Title 0506,drama,drama,2090,I05_release_year_valid,release_year,warning,"release_year must be numeric in [1900, 2024]"
+368,I0240,Item Title 0240,thriller,thriller|romance,1500,I05_release_year_valid,release_year,warning,"release_year must be numeric in [1900, 2024]"

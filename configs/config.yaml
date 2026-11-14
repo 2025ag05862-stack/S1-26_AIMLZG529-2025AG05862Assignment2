@@ -1,0 +1,87 @@
+# Central configuration for the whole pipeline. Every stage reads from here,
+# so a run is fully described by (code version + this file + seed).
+seed: 42
+reference_date: "2024-07-01"        # "today" for the pipeline; timestamps after this are invalid
+
+paths:
+  raw: data/raw
+  processed: data/processed
+  features: data/features
+  errors: data/errors
+  models: models
+  reports: reports
+
+synthetic:                           # used only when no raw CSVs are supplied
+  n_users: 1500
+  n_items: 600
+  n_latent_factors: 8
+  start_date: "2022-01-01"
+  end_date: "2024-06-30"
+  categories: [action, comedy, drama, sci-fi, romance, thriller, documentary, animation]
+  dirty:                             # fraction of rows corrupted on purpose (to exercise validation)
+    interactions:
+      exact_duplicate: 0.010
+      re_rating: 0.005               # same user rates same item again later (valid, handled in preparation)
+      missing_rating: 0.005
+      missing_timestamp: 0.003
+      missing_user_id: 0.002
+      invalid_rating_value: 0.006
+      non_numeric_rating: 0.003
+      unparseable_timestamp: 0.003
+      future_timestamp: 0.003
+      too_old_timestamp: 0.002
+      orphan_user: 0.004
+      orphan_item: 0.004
+    users:
+      exact_duplicate: 0.010
+      conflicting_duplicate: 0.004
+      missing_age: 0.020
+      invalid_age: 0.010
+      missing_country: 0.015
+      messy_gender: 0.150
+      messy_country: 0.050
+      bad_signup_date: 0.005
+      missing_user_id: 0.002
+    items:
+      exact_duplicate: 0.010
+      missing_category: 0.020
+      missing_title: 0.010
+      invalid_year: 0.010
+      messy_category: 0.050
+
+validation:
+  rating_min: 1
+  rating_max: 5
+  min_timestamp: "2022-01-01"
+  age_min: 10
+  age_max: 100
+  year_min: 1900
+  allowed_genders: [M, F, Other]
+
+preparation:
+  test_fraction: 0.20                # time-based: latest 20% of interactions go to test
+
+features:
+  rating_smoothing_m: 5              # Bayesian smoothing strength for item average rating
+
+training:
+  positive_threshold: 4              # rating >= 4 counts as a positive (implicit) interaction
+  mlflow:
+    tracking_uri: "sqlite:///mlflow.db"
+    experiment_name: "recsys-pipeline"
+  popularity:
+    smoothing_m: 5
+  tuning:                            # hyper-parameter selection on a VALIDATION slice cut from TRAIN only
+    enabled: true
+    val_fraction: 0.15               # latest 15% (by time) of the training interactions
+    factor_grid: [3, 5, 10, 20, 30]
+  mf:
+    n_factors_rating: 20             # fallback values, used only if tuning.enabled = false
+    n_factors_rank: 30
+    bias_reg: 10
+  hybrid:
+    alpha: 0.30                      # weight of the feature-store category-affinity signal
+
+evaluation:
+  k: 10
+  relevance_threshold: 4             # test rating >= 4 counts as a relevant item

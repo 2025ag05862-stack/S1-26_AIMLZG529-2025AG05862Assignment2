@@ -1,0 +1,21 @@
+{
+  "interactions_after_cleaning": 38008,
+  "superseded_re_ratings_dropped": 197,
+  "split_cutoff_timestamp": "2024-04-01 10:15:23.200000+00:00",
+  "train_rows": 30406,
+  "test_rows": 7602,
+  "train_period": [
+    "2022-01-07 00:17:18+00:00",
+    "2024-04-01 09:43:31+00:00"
+  ],
+  "test_period": [
+    "2024-04-01 10:36:38+00:00",
+    "2024-06-30 00:00:00+00:00"
+  ],
+  "train_users": 1497,
+  "train_items": 600,
+  "test_rows_cold_user": 0,
+  "test_rows_cold_item": 0,
+  "ages_imputed": 45,
+  "release_years_imputed": 6
+}

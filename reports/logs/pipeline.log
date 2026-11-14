@@ -1,0 +1,130 @@
+2026-11-13 06:59:11,252 | INFO    | runner | fresh start: generated artefacts removed
+2026-11-13 06:59:11,252 | INFO    | runner | execution order: ingest -> validate -> prepare -> transform -> build_features -> train -> evaluate
+2026-11-13 06:59:11,252 | INFO    | runner | START ingest (attempt 1)
+2026-11-13 06:59:11,252 | INFO    | ingestion | raw CSVs missing (or regeneration forced) -> generating synthetic data
+2026-11-13 06:59:12,826 | INFO    | ingestion.generate | wrote /home/claude/recommendation-pipeline/data/raw/users.csv (1521 rows)
+2026-11-13 06:59:12,827 | INFO    | ingestion.generate | wrote /home/claude/recommendation-pipeline/data/raw/items.csv (606 rows)
+2026-11-13 06:59:12,881 | INFO    | ingestion.generate | wrote /home/claude/recommendation-pipeline/data/raw/interactions.csv (40020 rows)
+2026-11-13 06:59:12,902 | INFO    | ingestion | ingested users        rows=1521
+2026-11-13 06:59:12,908 | INFO    | ingestion | ingested items        rows=606
+2026-11-13 06:59:12,966 | INFO    | ingestion | ingested interactions rows=40020
+2026-11-13 06:59:12,967 | INFO    | runner | DONE  ingest in 1.72s
+2026-11-13 06:59:12,967 | INFO    | runner | START validate (attempt 1)
+2026-11-13 06:59:13,164 | INFO    | validation | users        in=1521 valid=1497 rejected=24 (1.58%)
+2026-11-13 06:59:13,164 | INFO    | validation | items        in=606 valid=600 rejected=6 (0.99%)
+2026-11-13 06:59:13,164 | INFO    | validation | interactions in=40020 valid=38205 rejected=1815 (4.54%)
+2026-11-13 06:59:13,164 | INFO    | runner | DONE  validate in 0.20s
+2026-11-13 06:59:13,164 | INFO    | runner | START prepare (attempt 1)
+2026-11-13 06:59:13,292 | INFO    | preparation | clean=38008 train=30406 test=7602 cutoff=2024-04-01 10:15:23.200000+00:00
+2026-11-13 06:59:13,292 | INFO    | runner | DONE  prepare in 0.13s
+2026-11-13 06:59:13,292 | INFO    | runner | START transform (attempt 1)
+2026-11-13 06:59:13,372 | INFO    | transformation | matrix (1497, 600) nnz=30406 density=0.0339
+2026-11-13 06:59:13,372 | INFO    | runner | DONE  transform in 0.08s
+2026-11-13 06:59:13,372 | INFO    | runner | START build_features (attempt 1)
+2026-11-13 06:59:13,581 | INFO    | features | materialized 1497 user, 600 item, 30406 interaction-feature rows
+2026-11-13 06:59:13,581 | INFO    | runner | DONE  build_features in 0.21s
+2026-11-13 06:59:13,581 | INFO    | runner | START train (attempt 1)
+2026-11-13 06:59:15,514 | INFO    | training | tuning k=3   val NDCG@10=0.1851 val RMSE=0.7653
+2026-11-13 06:59:15,577 | INFO    | training | tuning k=5   val NDCG@10=0.1727 val RMSE=0.7645
+2026-11-13 06:59:15,635 | INFO    | training | tuning k=10  val NDCG@10=0.1507 val RMSE=0.7649
+2026-11-13 06:59:15,705 | INFO    | training | tuning k=20  val NDCG@10=0.1046 val RMSE=0.7650
+2026-11-13 06:59:15,790 | INFO    | training | tuning k=30  val NDCG@10=0.0786 val RMSE=0.7652
+2026-11-13 06:59:15,793 | INFO    | training | selected n_factors_rank=3 (best val NDCG), n_factors_rating=5 (best val RMSE)
+2026-11-13 06:59:15,820 | INFO    | training | trained popularity_baseline (run 517f9c7c)
+2026-11-13 06:59:15,875 | INFO    | training | trained svd_matrix_factorization (run e34261ff)
+2026-11-13 06:59:15,907 | INFO    | training | trained hybrid_mf_plus_features (run 98146db5)
+2026-11-13 06:59:15,911 | INFO    | runner | DONE  train in 2.33s
+2026-11-13 06:59:15,911 | INFO    | runner | START evaluate (attempt 1)
+2026-11-13 06:59:15,954 | INFO    | evaluation | evaluating 1295 users with >=1 relevant test item (K=10, relevant: rating>=4)
+2026-11-13 06:59:16,028 | INFO    | evaluation | popularity_baseline: {'precision@10': 0.0861, 'recall@10': 0.2247, 'ndcg@10': 0.1862, 'coverage': 0.0583, 'diversity': 0.8319, 'rmse': 0.8339, 'mae': 0.6757, 'users_evaluated': 1295}
+2026-11-13 06:59:16,106 | INFO    | evaluation | svd_matrix_factorization: {'precision@10': 0.1151, 'recall@10': 0.2931, 'ndcg@10': 0.2463, 'coverage': 0.1467, 'diversity': 0.7749, 'rmse': 0.7547, 'mae': 0.5961, 'users_evaluated': 1295}
+2026-11-13 06:59:16,211 | INFO    | evaluation | hybrid_mf_plus_features: {'precision@10': 0.1143, 'recall@10': 0.2868, 'ndcg@10': 0.2462, 'coverage': 0.185, 'diversity': 0.7502, 'rmse': 0.7547, 'mae': 0.5961, 'users_evaluated': 1295}
+2026-11-13 06:59:16,233 | INFO    | runner | DONE  evaluate in 0.32s
+2026-11-13 06:59:16,902 | INFO    | runner | PIPELINE SUCCEEDED
+2026-11-14 10:15:42,281 | INFO    | runner | fresh start: generated artefacts removed
+2026-11-14 10:15:42,283 | INFO    | runner | execution order: ingest -> validate -> prepare -> transform -> build_features -> train -> evaluate
+2026-11-14 10:15:42,285 | INFO    | runner | START ingest (attempt 1)
+2026-11-14 10:15:42,301 | INFO    | ingestion | raw CSVs missing (or regeneration forced) -> generating synthetic data
+2026-11-14 10:15:44,168 | INFO    | ingestion.generate | wrote /mnt/d/Pavithra/BITS/Sem 2/DMML/Assignment2/DM4ML_A2_Repository/recommendation-pipeline/data/raw/users.csv (1521 rows)
+2026-11-14 10:15:44,215 | INFO    | ingestion.generate | wrote /mnt/d/Pavithra/BITS/Sem 2/DMML/Assignment2/DM4ML_A2_Repository/recommendation-pipeline/data/raw/items.csv (606 rows)
+2026-11-14 10:15:44,534 | INFO    | ingestion.generate | wrote /mnt/d/Pavithra/BITS/Sem 2/DMML/Assignment2/DM4ML_A2_Repository/recommendation-pipeline/data/raw/interactions.csv (40020 rows)
+2026-11-14 10:15:44,943 | INFO    | ingestion | ingested users        rows=1521
+2026-11-14 10:15:45,024 | INFO    | ingestion | ingested items        rows=606
+2026-11-14 10:15:45,170 | INFO    | ingestion | ingested interactions rows=40020
+2026-11-14 10:15:45,199 | INFO    | runner | DONE  ingest in 2.91s
+2026-11-14 10:15:45,200 | INFO    | runner | START validate (attempt 1)
+2026-11-14 10:15:46,274 | INFO    | validation | users        in=1521 valid=1497 rejected=24 (1.58%)
+2026-11-14 10:15:46,276 | INFO    | validation | items        in=606 valid=600 rejected=6 (0.99%)
+2026-11-14 10:15:46,280 | INFO    | validation | interactions in=40020 valid=38205 rejected=1815 (4.54%)
+2026-11-14 10:15:46,286 | INFO    | runner | DONE  validate in 1.09s
+2026-11-14 10:15:46,289 | INFO    | runner | START prepare (attempt 1)
+2026-11-14 10:15:46,950 | INFO    | preparation | clean=38008 train=30406 test=7602 cutoff=2024-04-01 10:15:23.200000+00:00
+2026-11-14 10:15:46,951 | INFO    | runner | DONE  prepare in 0.66s
+2026-11-14 10:15:46,953 | INFO    | runner | START transform (attempt 1)
+2026-11-14 10:15:47,562 | INFO    | transformation | matrix (1497, 600) nnz=30406 density=0.0339
+2026-11-14 10:15:47,564 | INFO    | runner | DONE  transform in 0.61s
+2026-11-14 10:15:47,565 | INFO    | runner | START build_features (attempt 1)
+2026-11-14 10:15:48,515 | INFO    | features | materialized 1497 user, 600 item, 30406 interaction-feature rows
+2026-11-14 10:15:48,516 | INFO    | runner | DONE  build_features in 0.95s
+2026-11-14 10:15:48,518 | INFO    | runner | START train (attempt 1)
+2026-11-14 10:16:15,111 | INFO    | training | tuning k=3   val NDCG@10=0.1851 val RMSE=0.7653
+2026-11-14 10:16:15,485 | INFO    | training | tuning k=5   val NDCG@10=0.1727 val RMSE=0.7645
+2026-11-14 10:16:15,828 | INFO    | training | tuning k=10  val NDCG@10=0.1507 val RMSE=0.7649
+2026-11-14 10:16:16,206 | INFO    | training | tuning k=20  val NDCG@10=0.1046 val RMSE=0.7650
+2026-11-14 10:16:16,567 | INFO    | training | tuning k=30  val NDCG@10=0.0786 val RMSE=0.7652
+2026-11-14 10:16:16,621 | INFO    | training | selected n_factors_rank=3 (best val NDCG), n_factors_rating=5 (best val RMSE)
+2026-11-14 10:16:16,922 | INFO    | training | trained popularity_baseline (run e47e4ce9)
+2026-11-14 10:16:17,652 | INFO    | training | trained svd_matrix_factorization (run bbe19d33)
+2026-11-14 10:16:18,060 | INFO    | training | trained hybrid_mf_plus_features (run 221aab8d)
+2026-11-14 10:16:18,113 | INFO    | runner | DONE  train in 29.60s
+2026-11-14 10:16:18,114 | INFO    | runner | START evaluate (attempt 1)
+2026-11-14 10:16:18,301 | INFO    | evaluation | evaluating 1295 users with >=1 relevant test item (K=10, relevant: rating>=4)
+2026-11-14 10:16:18,919 | INFO    | evaluation | popularity_baseline: {'precision@10': 0.0863, 'recall@10': 0.2256, 'ndcg@10': 0.1866, 'coverage': 0.0583, 'diversity': 0.8325, 'rmse': 0.8339, 'mae': 0.6757, 'users_evaluated': 1295}
+2026-11-14 10:16:19,279 | INFO    | evaluation | svd_matrix_factorization: {'precision@10': 0.1151, 'recall@10': 0.2931, 'ndcg@10': 0.2463, 'coverage': 0.1467, 'diversity': 0.7749, 'rmse': 0.7547, 'mae': 0.5961, 'users_evaluated': 1295}
+2026-11-14 10:16:19,709 | INFO    | evaluation | hybrid_mf_plus_features: {'precision@10': 0.1143, 'recall@10': 0.2868, 'ndcg@10': 0.2462, 'coverage': 0.1833, 'diversity': 0.7502, 'rmse': 0.7547, 'mae': 0.5961, 'users_evaluated': 1295}
+2026-11-14 10:16:19,873 | INFO    | runner | DONE  evaluate in 1.76s
+2026-11-14 10:16:27,651 | INFO    | runner | PIPELINE SUCCEEDED
+2026-11-14 10:35:19,855 | INFO    | ingestion | ingested users        rows=1521
+2026-11-14 10:35:19,924 | INFO    | ingestion | ingested items        rows=606
+2026-11-14 10:35:20,093 | INFO    | ingestion | ingested interactions rows=40020
+2026-11-14 10:35:50,615 | INFO    | validation | users        in=1521 valid=1497 rejected=24 (1.58%)
+2026-11-14 10:35:50,616 | INFO    | validation | items        in=606 valid=600 rejected=6 (0.99%)
+2026-11-14 10:35:50,617 | INFO    | validation | interactions in=40020 valid=38205 rejected=1815 (4.54%)
+2026-11-14 10:36:17,924 | INFO    | preparation | clean=38008 train=30406 test=7602 cutoff=2024-04-01 10:15:23.200000+00:00
+2026-11-14 10:36:48,561 | INFO    | transformation | matrix (1497, 600) nnz=30406 density=0.0339
+2026-11-14 10:37:22,590 | INFO    | features | materialized 1497 user, 600 item, 30406 interaction-feature rows
+2026-11-14 10:38:07,319 | INFO    | training | tuning k=3   val NDCG@10=0.1851 val RMSE=0.7653
+2026-11-14 10:38:07,771 | INFO    | training | tuning k=5   val NDCG@10=0.1727 val RMSE=0.7645
+2026-11-14 10:38:08,250 | INFO    | training | tuning k=10  val NDCG@10=0.1507 val RMSE=0.7649
+2026-11-14 10:38:08,754 | INFO    | training | tuning k=20  val NDCG@10=0.1046 val RMSE=0.7650
+2026-11-14 10:38:09,205 | INFO    | training | tuning k=30  val NDCG@10=0.0786 val RMSE=0.7652
+2026-11-14 10:38:09,274 | INFO    | training | selected n_factors_rank=3 (best val NDCG), n_factors_rating=5 (best val RMSE)
+2026-11-14 10:38:09,774 | INFO    | training | trained popularity_baseline (run c92bcb43)
+2026-11-14 10:38:10,571 | INFO    | training | trained svd_matrix_factorization (run caca7cbd)
+2026-11-14 10:38:11,159 | INFO    | training | trained hybrid_mf_plus_features (run 11a0268d)
+2026-11-14 10:38:41,966 | INFO    | evaluation | evaluating 1295 users with >=1 relevant test item (K=10, relevant: rating>=4)
+2026-11-14 10:38:51,594 | INFO    | evaluation | popularity_baseline: {'precision@10': 0.0863, 'recall@10': 0.2256, 'ndcg@10': 0.1866, 'coverage': 0.0583, 'diversity': 0.8325, 'rmse': 0.8339, 'mae': 0.6757, 'users_evaluated': 1295}
+2026-11-14 10:38:52,002 | INFO    | evaluation | svd_matrix_factorization: {'precision@10': 0.1151, 'recall@10': 0.2931, 'ndcg@10': 0.2463, 'coverage': 0.1467, 'diversity': 0.7749, 'rmse': 0.7547, 'mae': 0.5961, 'users_evaluated': 1295}
+2026-11-14 10:38:52,449 | INFO    | evaluation | hybrid_mf_plus_features: {'precision@10': 0.1143, 'recall@10': 0.2868, 'ndcg@10': 0.2462, 'coverage': 0.1833, 'diversity': 0.7502, 'rmse': 0.7547, 'mae': 0.5961, 'users_evaluated': 1295}
+2026-11-14 10:39:28,498 | INFO    | ingestion | ingested users        rows=1521
+2026-11-14 10:39:28,582 | INFO    | ingestion | ingested items        rows=606
+2026-11-14 10:39:28,783 | INFO    | ingestion | ingested interactions rows=40020
+2026-11-14 10:39:58,555 | INFO    | validation | users        in=1521 valid=1497 rejected=24 (1.58%)
+2026-11-14 10:39:58,557 | INFO    | validation | items        in=606 valid=600 rejected=6 (0.99%)
+2026-11-14 10:39:58,558 | INFO    | validation | interactions in=40020 valid=38205 rejected=1815 (4.54%)
+2026-11-14 10:40:31,070 | INFO    | preparation | clean=38008 train=30406 test=7602 cutoff=2024-04-01 10:15:23.200000+00:00
+2026-11-14 10:41:18,254 | INFO    | transformation | matrix (1497, 600) nnz=30406 density=0.0339
+2026-11-14 10:42:13,107 | INFO    | features | materialized 1497 user, 600 item, 30406 interaction-feature rows
+2026-11-14 10:43:45,954 | INFO    | training | tuning k=3   val NDCG@10=0.1851 val RMSE=0.7653
+2026-11-14 10:43:46,528 | INFO    | training | tuning k=5   val NDCG@10=0.1727 val RMSE=0.7645
+2026-11-14 10:43:47,131 | INFO    | training | tuning k=10  val NDCG@10=0.1507 val RMSE=0.7649
+2026-11-14 10:43:47,792 | INFO    | training | tuning k=20  val NDCG@10=0.1046 val RMSE=0.7650
+2026-11-14 10:43:48,385 | INFO    | training | tuning k=30  val NDCG@10=0.0786 val RMSE=0.7652
+2026-11-14 10:43:48,452 | INFO    | training | selected n_factors_rank=3 (best val NDCG), n_factors_rating=5 (best val RMSE)
+2026-11-14 10:43:49,243 | INFO    | training | trained popularity_baseline (run 9091b4d4)
+2026-11-14 10:43:50,629 | INFO    | training | trained svd_matrix_factorization (run fd553fd7)
+2026-11-14 10:43:51,687 | INFO    | training | trained hybrid_mf_plus_features (run c0085896)
+2026-11-14 10:44:50,133 | INFO    | evaluation | evaluating 1295 users with >=1 relevant test item (K=10, relevant: rating>=4)
+2026-11-14 10:45:02,901 | INFO    | evaluation | popularity_baseline: {'precision@10': 0.0863, 'recall@10': 0.2256, 'ndcg@10': 0.1866, 'coverage': 0.0583, 'diversity': 0.8325, 'rmse': 0.8339, 'mae': 0.6757, 'users_evaluated': 1295}
+2026-11-14 10:45:03,574 | INFO    | evaluation | svd_matrix_factorization: {'precision@10': 0.1151, 'recall@10': 0.2931, 'ndcg@10': 0.2463, 'coverage': 0.1467, 'diversity': 0.7749, 'rmse': 0.7547, 'mae': 0.5961, 'users_evaluated': 1295}
+2026-11-14 10:45:04,248 | INFO    | evaluation | hybrid_mf_plus_features: {'precision@10': 0.1143, 'recall@10': 0.2868, 'ndcg@10': 0.2462, 'coverage': 0.1833, 'diversity': 0.7502, 'rmse': 0.7547, 'mae': 0.5961, 'users_evaluated': 1295}
